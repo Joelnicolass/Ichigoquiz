@@ -1,0 +1,282 @@
+:root {
+  --bg: #0a0a0a;
+  --ink: #f4f4f0;
+  --neon: #1ce783;
+  --neon-dim: #0f6b3e;
+  --line: rgba(244, 244, 240, 0.08);
+  --accent: #1ce783;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ---------- App shell ---------- */
+.app {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 100dvh;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--safe-top) + 14px) 16px calc(var(--safe-bottom) + 16px);
+  isolation: isolate;
+}
+
+@media (min-width: 520px) {
+  .app {
+    border-left: 2px solid var(--line);
+    border-right: 2px solid var(--line);
+  }
+}
+
+/* Grilla tipo landing tech brutalista */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at 50% 40%, #000 30%, transparent 85%);
+}
+
+.halftone {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: radial-gradient(circle, var(--accent) 1.2px, transparent 1.6px);
+  background-size: 9px 9px;
+  opacity: 0.18;
+  mask-image: linear-gradient(160deg, #000 0%, transparent 55%);
+}
+
+.speedlines {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 260vmax;
+  height: 260vmax;
+  margin: -130vmax 0 0 -130vmax;
+  z-index: -1;
+  pointer-events: none;
+  background: repeating-conic-gradient(from 0deg, transparent 0deg 3deg, rgba(244, 244, 240, 0.07) 3deg 4deg);
+  mask-image: radial-gradient(circle, transparent 12%, #000 40%);
+}
+
+/* ---------- Tipografía ---------- */
+.display {
+  font-family: var(--font-anton), Impact, sans-serif;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+}
+
+.comic {
+  font-family: var(--font-bangers), Impact, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.jp {
+  font-family: var(--font-jp), "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-weight: 900;
+}
+
+.label {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.neon {
+  color: var(--accent);
+}
+
+.stroke {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+}
+
+/* ---------- Bloques brutalistas ---------- */
+.brutal {
+  border: 3px solid var(--ink);
+  background: var(--bg);
+  box-shadow: 6px 6px 0 var(--accent);
+}
+
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 20px;
+  border: 3px solid var(--ink);
+  background: var(--accent);
+  color: #0a0a0a;
+  box-shadow: 6px 6px 0 var(--ink);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: 6px 6px 0 var(--accent);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 2px solid var(--ink);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* ---------- Pregunta ---------- */
+.progress {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.progress span {
+  height: 8px;
+  border: 2px solid var(--ink);
+  transform-origin: left;
+}
+
+.option {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  padding: 14px 14px 14px 56px;
+  min-height: 64px;
+  border: 3px solid var(--ink);
+  background: var(--bg);
+  font-family: var(--font-mono), monospace;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  box-shadow: 5px 5px 0 var(--ink);
+  overflow: hidden;
+}
+
+.option .key {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 42px;
+  display: grid;
+  place-items: center;
+  border-right: 3px solid var(--ink);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: 22px;
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.option.selected {
+  background: var(--accent);
+  color: #0a0a0a;
+}
+
+/* ---------- Resultado ---------- */
+.scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.stat-bar {
+  height: 14px;
+  border: 2px solid var(--ink);
+  background: repeating-linear-gradient(45deg, transparent 0 4px, rgba(244, 244, 240, 0.08) 4px 6px);
+}
+
+.stat-bar > div {
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+}
+
+.marquee {
+  display: flex;
+  white-space: nowrap;
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  background: var(--accent);
+  color: #0a0a0a;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
